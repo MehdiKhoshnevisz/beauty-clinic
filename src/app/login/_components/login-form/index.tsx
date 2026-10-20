@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuthCookie } from "@/hooks/use-auth-cookie";
+import { loginAction } from "@/lib/auth-actions";
 import { useLoginForm } from "./use-login-form";
-import { FieldErrors } from "./types";
 
 export function LoginForm() {
   const router = useRouter();
@@ -42,31 +42,18 @@ export function LoginForm() {
     dispatch({ type: "SUBMIT_START" });
 
     try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "same-origin",
-        body: JSON.stringify({
-          identifier: identifier.trim(),
-          password,
-        }),
-      });
+      const result = await loginAction(identifier.trim(), password);
 
-      const data = (await response.json()) as {
-        error?: string;
-        field?: keyof FieldErrors;
-      };
-
-      if (!response.ok) {
-        if (data.field && data.error) {
+      if (!result.success) {
+        if (result.field) {
           dispatch({
             type: "SUBMIT_FAILURE",
-            fieldErrors: { [data.field]: data.error },
+            fieldErrors: { [result.field]: result.error },
           });
         } else {
           dispatch({
             type: "SUBMIT_FAILURE",
-            formError: data.error ?? "Something went wrong. Try again.",
+            formError: result.error,
           });
         }
         return;
@@ -77,7 +64,7 @@ export function LoginForm() {
     } catch {
       dispatch({
         type: "SUBMIT_FAILURE",
-        formError: "Connection failed. Try again.",
+        formError: "Something went wrong. Try again.",
       });
     } finally {
       dispatch({ type: "SUBMIT_END" });
