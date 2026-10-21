@@ -1,6 +1,8 @@
+"use client";
+
 import { cn } from "cn";
+import { useTranslation } from "react-i18next";
 import type { ReservationStatus } from "@/types/reservation";
-import { STATUS_LABELS } from "@/types/reservation";
 
 const statusStyles: Record<ReservationStatus, string> = {
   pending:
@@ -17,6 +19,8 @@ type StatusBadgeProps = {
 };
 
 export function StatusBadge({ status, className }: StatusBadgeProps) {
+  const { t } = useTranslation();
+
   return (
     <span
       className={cn(
@@ -25,7 +29,7 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
         className,
       )}
     >
-      {STATUS_LABELS[status]}
+      {t(`status.${status}`)}
     </span>
   );
 }

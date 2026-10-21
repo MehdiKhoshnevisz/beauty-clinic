@@ -1,6 +1,8 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { t } from "@/i18n";
+import { parseLogin } from "@/lib/login-schema";
 import {
   AUTH_COOKIE_NAME,
   AUTH_COOKIE_VALUE,
@@ -17,35 +19,37 @@ export async function loginAction(
   identifier: string,
   password: string,
 ): Promise<LoginResult> {
-  const trimmedIdentifier = identifier.trim();
+  const parsed = parseLogin({ identifier, password }, t);
 
-  if (!trimmedIdentifier) {
-    return {
-      success: false,
-      error: "Email or username is required.",
-      field: "identifier",
-    };
-  }
-
-  if (!password) {
-    return {
-      success: false,
-      error: "Password is required.",
-      field: "password",
-    };
+  if (!parsed.success) {
+    if (parsed.errors.identifier) {
+      return {
+        success: false,
+        error: parsed.errors.identifier,
+        field: "identifier",
+      };
+    }
+    if (parsed.errors.password) {
+      return {
+        success: false,
+        error: parsed.errors.password,
+        field: "password",
+      };
+    }
+    return { success: false, error: t("login.somethingWrong") };
   }
 
   const { username, password: adminPassword } = getAdminCredentials();
 
   if (!username || !adminPassword) {
-    return { success: false, error: "Authentication is not configured." };
+    return { success: false, error: t("login.notConfigured") };
   }
 
   const identifierMatches =
-    trimmedIdentifier.toLowerCase() === username.toLowerCase();
+    parsed.data.identifier.toLowerCase() === username.toLowerCase();
 
-  if (!identifierMatches || password !== adminPassword) {
-    return { success: false, error: "Invalid username or password." };
+  if (!identifierMatches || parsed.data.password !== adminPassword) {
+    return { success: false, error: t("login.invalidCredentials") };
   }
 
   const cookieStore = await cookies();

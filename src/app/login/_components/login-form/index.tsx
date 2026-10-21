@@ -3,14 +3,17 @@
 import { type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "@/components/ui/toast";
 import { useAuthCookie } from "@/hooks/use-auth-cookie";
 import { loginAction } from "@/lib/auth-actions";
 import { useLoginForm } from "./use-login-form";
 
 export function LoginForm() {
+  const { t } = useTranslation();
   const router = useRouter();
   const { setAuthCookie } = useAuthCookie();
 
@@ -35,14 +38,15 @@ export function LoginForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!validate()) {
+    const parsed = validate();
+    if (!parsed) {
       return;
     }
 
     dispatch({ type: "SUBMIT_START" });
 
     try {
-      const result = await loginAction(identifier.trim(), password);
+      const result = await loginAction(parsed.identifier, parsed.password);
 
       if (!result.success) {
         if (result.field) {
@@ -60,11 +64,15 @@ export function LoginForm() {
       }
 
       setAuthCookie();
+      toast.add({
+        type: "success",
+        title: t("login.successToast"),
+      });
       router.replace("/dashboard");
     } catch {
       dispatch({
         type: "SUBMIT_FAILURE",
-        formError: "Something went wrong. Try again.",
+        formError: t("login.somethingWrong"),
       });
     } finally {
       dispatch({ type: "SUBMIT_END" });
@@ -80,11 +88,7 @@ export function LoginForm() {
       {formError ? (
         <div
           role="alert"
-          className="rounded-xl px-3.5 py-3 text-sm"
-          style={{
-            backgroundColor: "rgba(185, 28, 28, 0.08)",
-            color: "#B91C1C",
-          }}
+          className="rounded-xl bg-destructive/8 px-3.5 py-3 text-sm text-destructive"
         >
           {formError}
         </div>
@@ -93,16 +97,16 @@ export function LoginForm() {
       <div className="flex flex-col gap-2">
         <Label
           htmlFor="identifier"
-          className="text-xs font-medium text-charcoal/99"
+          className="text-xs font-medium text-charcoal/60"
         >
-          Email or username
+          {t("login.identifier")}
         </Label>
         <Input
           id="identifier"
           name="identifier"
           type="text"
           autoComplete="username"
-          placeholder="you@clinic.com"
+          placeholder={t("login.identifierPlaceholder")}
           value={identifier}
           onChange={(event) => setIdentifier(event.target.value)}
           aria-invalid={Boolean(fieldErrors.identifier)}
@@ -110,14 +114,13 @@ export function LoginForm() {
             fieldErrors.identifier ? "identifier-error" : undefined
           }
           disabled={isSubmitting}
-          className="h-11 rounded-xl border-0 bg-black/[0.035] px-3.5 text-sm ring-1 ring-[#1A1A1A]/10 transition-all placeholder:text-[#1A1A1A]/35 focus-visible:bg-white focus-visible:ring-[#1A1A1A]/28"
+          className="h-11 rounded-xl border-0 bg-black/[0.035] px-3.5 text-sm ring-1 ring-charcoal/10 transition-all placeholder:text-charcoal/35 focus-visible:bg-white focus-visible:ring-charcoal/28"
         />
         {fieldErrors.identifier ? (
           <p
             id="identifier-error"
             role="alert"
-            className="text-xs"
-            style={{ color: "#B91C1C" }}
+            className="text-xs text-destructive"
           >
             {fieldErrors.identifier}
           </p>
@@ -127,9 +130,9 @@ export function LoginForm() {
       <div className="flex flex-col gap-2">
         <Label
           htmlFor="password"
-          className="text-xs font-medium text-charcoal/99"
+          className="text-xs font-medium text-charcoal/60"
         >
-          Password
+          {t("login.password")}
         </Label>
         <div className="relative">
           <Input
@@ -145,13 +148,15 @@ export function LoginForm() {
               fieldErrors.password ? "password-error" : undefined
             }
             disabled={isSubmitting}
-            className="h-11 rounded-xl border-0 bg-black/[0.035] px-3.5 pr-11 text-sm ring-1 ring-[#1A1A1A]/10 transition-all placeholder:text-[#1A1A1A]/35 focus-visible:bg-white focus-visible:ring-[#1A1A1A]/28"
+            className="h-11 rounded-xl border-0 bg-black/[0.035] px-3.5 pe-11 text-sm ring-1 ring-charcoal/10 transition-all placeholder:text-charcoal/35 focus-visible:bg-white focus-visible:ring-charcoal/28"
           />
           <button
             type="button"
             onClick={togglePassword}
-            className="absolute top-1/2 right-3.5 -translate-y-1/2 transition-colors hover:opacity-70 text-xs font-medium text-charcoal/80"
-            aria-label={showPassword ? "Hide password" : "Show password"}
+            className="absolute top-1/2 end-3.5 -translate-y-1/2 text-xs font-medium text-charcoal/50 transition-colors hover:opacity-70"
+            aria-label={
+              showPassword ? t("login.hidePassword") : t("login.showPassword")
+            }
             disabled={isSubmitting}
           >
             {showPassword ? (
@@ -181,10 +186,10 @@ export function LoginForm() {
         {isSubmitting ? (
           <>
             <Loader2 className="size-4 animate-spin" aria-hidden />
-            Signing in
+            {t("login.signingIn")}
           </>
         ) : (
-          "Continue"
+          t("login.continue")
         )}
       </Button>
     </form>

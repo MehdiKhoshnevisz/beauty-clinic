@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "کلینیک زیبایی — مدیریت نوبت‌ها",
+    "description": "سامانه مدیریت نوبت‌های کلینیک زیبایی",
+    "loginTitle": "ورود · کلینیک زیبایی",
+    "loginDescription": "برای مدیریت نوبت‌های کلینیک وارد شوید."
+  },
+  "brand": {
+    "name": "کلینیک زیبایی",
+    "logoAlt": "لوگوی کلینیک زیبایی",
+    "tagline": "پوستی بهتر · شمایی درخشان‌تر",
+    "adminConsole": "پنل مدیریت"
+  },
+  "common": {
+    "close": "بستن",
+    "cancel": "انصراف",
+    "details": "جزئیات",
+    "actions": "عملیات",
+    "phone": "تلفن",
+    "email": "ایمیل",
+    "date": "تاریخ",
+    "time": "ساعت",
+    "status": "وضعیت",
+    "customer": "مشتری",
+    "service": "خدمت",
+    "notes": "یادداشت",
+    "search": "جستجو",
+    "previous": "قبلی",
+    "next": "بعدی",
+    "language": "زبان",
+    "languageNames": {
+      "en": "انگلیسی",
+      "fa": "فارسی"
+    }
+  },
+  "nav": {
+    "home": "خانه",
+    "whyChooseUs": "ارزش‌های ما",
+    "main": "منوی اصلی",
+    "dashboard": "داشبورد",
+    "reservations": "نوبت‌ها",
+    "openMenu": "باز کردن منو",
+    "closeMenu": "بستن منو",
+    "closeNavigation": "بستن ناوبری"
+  },
+  "landing": {
+    "heroImageAlt": "مدل کلینیک زیبایی با گل",
+    "headline": "زیبایی شما، اولویت ما",
+    "body": "مراقبت‌های زیبایی شخصی‌سازی‌شده برای بهترین نسخهٔ شما.",
+    "bookAppointment": "رزرو نوبت",
+    "whyChooseUsEyebrow": "ارزش‌های ما",
+    "whyChooseUsTitle": "مراقبت تخصصی، نتایج ماندگار",
+    "whyChooseUsBody": "درمان‌های حرفه‌ای و شخصی‌سازی‌شده با تمرکز بر سلامت و زیبایی شما.",
+    "features": {
+      "specialists": {
+        "title": "متخصصان ماهر",
+        "description": "کارشناسان زیبایی باتجربه و دارای گواهی."
+      },
+      "safe": {
+        "title": "ایمن و مدرن",
+        "description": "درمان‌های پیشرفته در فضایی تمیز و دلپذیر."
+      },
+      "personalized": {
+        "title": "برنامه شخصی",
+        "description": "مراقبت متناسب با پوست و اهداف منحصربه‌فرد شما."
+      },
+      "natural": {
+        "title": "نتایج طبیعی",
+        "description": "زیبایی شما با نتایج ظریف و ماندگار."
+      }
+    }
+  },
+  "login": {
+    "heroImageAlt": "فضای کلینیک زیبایی",
+    "heroBody": "وارد شوید تا نوبت‌ها را مدیریت کنید.",
+    "returnToWebsite": "بازگشت به وب‌سایت",
+    "staffAccess": "دسترسی کارکنان",
+    "signIn": "ورود",
+    "subtitle": "با حساب کارکنان برای مدیریت نوبت‌ها و فعالیت کلینیک وارد شوید.",
+    "identifier": "ایمیل یا نام کاربری",
+    "identifierPlaceholder": "you@clinic.com",
+    "password": "رمز عبور",
+    "showPassword": "نمایش رمز عبور",
+    "hidePassword": "مخفی کردن رمز عبور",
+    "continue": "ادامه",
+    "signingIn": "در حال ورود",
+    "fieldRequired": "این فیلد الزامی است.",
+    "somethingWrong": "مشکلی پیش آمد. دوباره تلاش کنید.",
+    "identifierRequired": "ایمیل یا نام کاربری الزامی است.",
+    "passwordRequired": "رمز عبور الزامی است.",
+    "notConfigured": "احراز هویت پیکربندی نشده است.",
+    "invalidCredentials": "نام کاربری یا رمز عبور نادرست است.",
+    "successToast": "ورود با موفقیت انجام شد."
+  },
+  "dashboard": {
+    "logout": "خروج",
+    "logoutSuccessToast": "خروج با موفقیت انجام شد.",
+    "welcomeBack": "خوش آمدید، {{name}}",
+    "overviewBody": "نمای کلی نوبت‌ها و فعالیت مراجعان در کلینیک شما.",
+    "viewReservations": "مشاهده نوبت‌ها",
+    "summaryLabel": "خلاصه نوبت‌ها",
+    "total": "کل",
+    "upcoming": "پیش‌رو",
+    "completed": "انجام‌شده",
+    "cancelled": "لغوشده",
+    "totalHint": "همه نوبت‌های ثبت‌شده",
+    "upcomingHint": "زمان‌بندی‌شده برای آینده",
+    "completedHint": "مراجعات پایان‌یافته",
+    "cancelledHint": "دیگر فعال نیست",
+    "recentReservations": "نوبت‌های اخیر",
+    "recentSubtitle": "آخرین فعالیت در دفتر نوبت‌ها",
+    "seeAll": "مشاهده همه",
+    "recentLabel": "نوبت‌های اخیر"
+  },
+  "reservations": {
+    "title": "نوبت‌ها",
+    "subtitle": "مدیریت نوبت‌ها، پیگیری وضعیت و بررسی جزئیات مراجعان.",
+    "newReservation": "نوبت جدید",
+    "listLabel": "فهرست نوبت‌ها",
+    "searchByCustomer": "جستجو بر اساس مشتری",
+    "searchPlaceholder": "نام مشتری…",
+    "allStatuses": "همه وضعیت‌ها",
+    "showing": "نمایش {{filtered}} از {{total}}",
+    "showingRange": "نمایش {{from}}–{{to}} از {{filtered}}",
+    "pageOf": "صفحه {{page}} از {{pages}}",
+    "emptyTitle": "نوبتی یافت نشد",
+    "emptyBody": "نام دیگری امتحان کنید یا فیلتر وضعیت را پاک کنید.",
+    "createEyebrow": "ایجاد نوبت",
+    "createTitle": "نوبت جدید",
+    "createDescription": "فرم را برای ایجاد نوبت جدید پر کنید.",
+    "createAction": "ایجاد نوبت",
+    "createSuccessToast": "نوبت با موفقیت ایجاد شد.",
+    "closeForm": "بستن فرم نوبت جدید",
+    "customerName": "نام مشتری",
+    "customerNamePlaceholder": "نام کامل",
+    "phoneNumber": "شماره تلفن",
+    "phonePlaceholder": "۰۹۱۲۱۲۳۴۵۶۷",
+    "serviceType": "نوع خدمت",
+    "selectService": "انتخاب خدمت…",
+    "reservationDate": "تاریخ نوبت",
+    "reservationTime": "ساعت نوبت",
+    "detailEyebrow": "جزئیات نوبت",
+    "detailDescription": "جزئیات کامل نوبت {{name}}",
+    "closeDetails": "بستن جزئیات نوبت",
+    "reservationId": "شناسه نوبت",
+    "errors": {
+      "customerNameRequired": "نام مشتری الزامی است.",
+      "phoneRequired": "شماره تلفن الزامی است.",
+      "phoneInvalid": "شماره تلفن معتبر وارد کنید.",
+      "serviceRequired": "نوع خدمت الزامی است.",
+      "dateRequired": "تاریخ نوبت الزامی است.",
+      "timeRequired": "ساعت نوبت الزامی است."
+    }
+  },
+  "status": {
+    "pending": "در انتظار",
+    "confirmed": "تأییدشده",
+    "canceled": "لغوشده"
+  },
+  "services": {
+    "hydrafacial": "هیدرافیشیال",
+    "laserHairRemoval": "لیزر موهای زائد",
+    "chemicalPeel": "پیلینگ شیمیایی",
+    "botoxConsultation": "مشاوره بوتاکس",
+    "classicFacial": "فیشیال کلاسیک",
+    "microdermabrasion": "میکرودرم ابریژن",
+    "ledLightTherapy": "لایت‌تراپی ال‌ای‌دی",
+    "dermaplaning": "درماپلینینگ",
+    "lipFillerConsultation": "مشاوره فیلر لب",
+    "antiAgingFacial": "فیشیال ضدپیری",
+    "bodyContouring": "کانتورینگ بدن",
+    "deepCleansingFacial": "فیشیال پاکسازی عمیق"
+  }
+}

@@ -5,60 +5,32 @@ import {
   useContext,
   useMemo,
   useState,
+  useSyncExternalStore,
   type Dispatch,
   type ReactNode,
   type SetStateAction,
 } from "react";
-import { sampleReservations } from "@/data/sample-reservations";
+import { useTranslation } from "react-i18next";
+import { getSampleReservations } from "@/data/sample-reservations";
+import { getTodayIso } from "@/i18n/format";
+import { defaultLocale, type Locale } from "@/i18n/settings";
+import {
+  getPendingReservationSummary,
+  getReservationSummary,
+  type ReservationSummary,
+} from "@/lib/reservation-summary";
 import type { Reservation } from "@/types/reservation";
 
 type DashboardContextValue = {
   userName: string;
   reservations: Reservation[];
   setReservations: Dispatch<SetStateAction<Reservation[]>>;
-  summary: {
-    total: number;
-    upcoming: number;
-    completed: number;
-    cancelled: number;
-  };
+  summary: ReservationSummary;
 };
 
 const DashboardContext = createContext<DashboardContextValue | null>(null);
 
-function getTodayIso() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
-export function getReservationSummary(reservations: Reservation[]) {
-  const today = getTodayIso();
-  let upcoming = 0;
-  let completed = 0;
-  let cancelled = 0;
-
-  for (const reservation of reservations) {
-    if (reservation.status === "canceled") {
-      cancelled += 1;
-      continue;
-    }
-    if (reservation.date < today) {
-      completed += 1;
-    } else {
-      upcoming += 1;
-    }
-  }
-
-  return {
-    total: reservations.length,
-    upcoming,
-    completed,
-    cancelled,
-  };
-}
+const emptySubscribe = () => () => {};
 
 export function DashboardProvider({
   children,
@@ -67,13 +39,26 @@ export function DashboardProvider({
   children: ReactNode;
   userName: string;
 }) {
-  const [reservations, setReservations] =
-    useState<Reservation[]>(sampleReservations);
-
-  const summary = useMemo(
-    () => getReservationSummary(reservations),
-    [reservations],
+  const { i18n } = useTranslation();
+  const locale = (i18n.language as Locale) || defaultLocale;
+  const [reservations, setReservations] = useState<Reservation[]>(() =>
+    getSampleReservations(locale),
   );
+  const [reservationsLocale, setReservationsLocale] = useState(locale);
+
+  // Client-only "today" avoids SSR/client date mismatches.
+  const today = useSyncExternalStore(emptySubscribe, getTodayIso, () => null);
+
+  // Re-seed sample data when the locale changes (adjust during render).
+  if (locale !== reservationsLocale) {
+    setReservationsLocale(locale);
+    setReservations(getSampleReservations(locale));
+  }
+
+  const summary = useMemo(() => {
+    if (today) return getReservationSummary(reservations, today);
+    return getPendingReservationSummary(reservations);
+  }, [reservations, today]);
 
   const value = useMemo(
     () => ({

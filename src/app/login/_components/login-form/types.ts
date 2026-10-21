@@ -1,7 +1,6 @@
-export type FieldErrors = {
-  identifier?: string;
-  password?: string;
-};
+import type { LoginFieldErrors } from "@/lib/login-schema";
+
+export type FieldErrors = LoginFieldErrors;
 
 export type FormState = {
   identifier: string;

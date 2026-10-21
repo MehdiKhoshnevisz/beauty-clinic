@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Beauty Clinic Reservation Management",
+    "description": "Beauty clinic reservation management application",
+    "loginTitle": "Sign in · Beauty Clinic",
+    "loginDescription": "Sign in to manage beauty clinic reservations."
+  },
+  "brand": {
+    "name": "Beauty Clinic",
+    "logoAlt": "Beauty Clinic Logo",
+    "tagline": "Better Skin · Brighter You",
+    "adminConsole": "Admin console"
+  },
+  "common": {
+    "close": "Close",
+    "cancel": "Cancel",
+    "details": "Details",
+    "actions": "Actions",
+    "phone": "Phone",
+    "email": "Email",
+    "date": "Date",
+    "time": "Time",
+    "status": "Status",
+    "customer": "Customer",
+    "service": "Service",
+    "notes": "Notes",
+    "search": "Search",
+    "previous": "Previous",
+    "next": "Next",
+    "language": "Language",
+    "languageNames": {
+      "en": "English",
+      "fa": "Persian"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "whyChooseUs": "Why Choose Us",
+    "main": "Main",
+    "dashboard": "Dashboard",
+    "reservations": "Reservations",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "closeNavigation": "Close navigation"
+  },
+  "landing": {
+    "heroImageAlt": "Beauty clinic model holding flowers",
+    "headline": "Your Beauty, Our Priority",
+    "body": "Personalized beauty treatments designed to help you feel your best.",
+    "bookAppointment": "Book Appointment",
+    "whyChooseUsEyebrow": "Why Choose Us",
+    "whyChooseUsTitle": "Expert Care, Lasting Results",
+    "whyChooseUsBody": "Professional, personalized treatments with your health and beauty in mind.",
+    "features": {
+      "specialists": {
+        "title": "Skilled Specialists",
+        "description": "Experienced and certified beauty professionals."
+      },
+      "safe": {
+        "title": "Safe & Modern",
+        "description": "Advanced treatments in a clean, welcoming space."
+      },
+      "personalized": {
+        "title": "Personalized Plans",
+        "description": "Care tailored to your unique skin and goals."
+      },
+      "natural": {
+        "title": "Natural Results",
+        "description": "Enhance your beauty with subtle, lasting outcomes."
+      }
+    }
+  },
+  "login": {
+    "heroImageAlt": "Beauty clinic atmosphere",
+    "heroBody": "Sign in to manage appointments and keep your clinic running smoothly.",
+    "returnToWebsite": "Return to website",
+    "staffAccess": "Staff access",
+    "signIn": "Sign in",
+    "subtitle": "Use your staff account to manage reservations and clinic activity.",
+    "identifier": "Email or username",
+    "identifierPlaceholder": "you@clinic.com",
+    "password": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "continue": "Continue",
+    "signingIn": "Signing in",
+    "fieldRequired": "This field is required.",
+    "somethingWrong": "Something went wrong. Try again.",
+    "identifierRequired": "Email or username is required.",
+    "passwordRequired": "Password is required.",
+    "notConfigured": "Authentication is not configured.",
+    "invalidCredentials": "Invalid username or password.",
+    "successToast": "Signed in successfully."
+  },
+  "dashboard": {
+    "logout": "Logout",
+    "logoutSuccessToast": "Signed out successfully.",
+    "welcomeBack": "Welcome back, {{name}}",
+    "overviewBody": "A clear view of appointments and client activity across your clinic.",
+    "viewReservations": "View reservations",
+    "summaryLabel": "Reservation summary",
+    "total": "Total",
+    "upcoming": "Upcoming",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "totalHint": "All booked appointments",
+    "upcomingHint": "Scheduled ahead",
+    "completedHint": "Finished visits",
+    "cancelledHint": "No longer active",
+    "recentReservations": "Recent reservations",
+    "recentSubtitle": "Latest activity across your book",
+    "seeAll": "See all",
+    "recentLabel": "Recent reservations"
+  },
+  "reservations": {
+    "title": "Reservations",
+    "subtitle": "Manage appointments, track status, and review client details.",
+    "newReservation": "New Reservation",
+    "listLabel": "Reservations list",
+    "searchByCustomer": "Search by customer",
+    "searchPlaceholder": "Customer name…",
+    "allStatuses": "All statuses",
+    "showing": "Showing {{filtered}} of {{total}}",
+    "showingRange": "Showing {{from}}–{{to}} of {{filtered}}",
+    "pageOf": "Page {{page}} of {{pages}}",
+    "emptyTitle": "No matching reservations",
+    "emptyBody": "Try a different name or clear the status filter.",
+    "createEyebrow": "Create reservation",
+    "createTitle": "New Reservation",
+    "createDescription": "Fill in the form to create a new reservation.",
+    "createAction": "Create reservation",
+    "createSuccessToast": "Reservation created successfully.",
+    "closeForm": "Close new reservation form",
+    "customerName": "Customer Name",
+    "customerNamePlaceholder": "Full name",
+    "phoneNumber": "Phone Number",
+    "phonePlaceholder": "+1 (555) 000-0000",
+    "serviceType": "Service Type",
+    "selectService": "Select a service…",
+    "reservationDate": "Reservation Date",
+    "reservationTime": "Reservation Time",
+    "detailEyebrow": "Reservation details",
+    "detailDescription": "Full details for {{name}}'s reservation.",
+    "closeDetails": "Close reservation details",
+    "reservationId": "Reservation ID",
+    "errors": {
+      "customerNameRequired": "Customer name is required.",
+      "phoneRequired": "Phone number is required.",
+      "phoneInvalid": "Enter a valid phone number.",
+      "serviceRequired": "Service type is required.",
+      "dateRequired": "Reservation date is required.",
+      "timeRequired": "Reservation time is required."
+    }
+  },
+  "status": {
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "canceled": "Canceled"
+  },
+  "services": {
+    "hydrafacial": "Hydrafacial",
+    "laserHairRemoval": "Laser Hair Removal",
+    "chemicalPeel": "Chemical Peel",
+    "botoxConsultation": "Botox Consultation",
+    "classicFacial": "Classic Facial",
+    "microdermabrasion": "Microdermabrasion",
+    "ledLightTherapy": "LED Light Therapy",
+    "dermaplaning": "Dermaplaning",
+    "lipFillerConsultation": "Lip Filler Consultation",
+    "antiAgingFacial": "Anti-Aging Facial",
+    "bodyContouring": "Body Contouring",
+    "deepCleansingFacial": "Deep Cleansing Facial"
+  }
+}

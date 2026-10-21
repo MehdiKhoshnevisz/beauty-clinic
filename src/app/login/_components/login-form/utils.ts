@@ -1,4 +1,4 @@
-import { FieldErrors, FormAction, FormState } from "./types";
+import { FormAction, FormState } from "./types";
 
 export const initialState: FormState = {
   identifier: "",
@@ -53,18 +53,4 @@ export function formReducer(state: FormState, action: FormAction): FormState {
     default:
       return state;
   }
-}
-
-export function validateClient(
-  identifier: string,
-  password: string,
-): FieldErrors {
-  const errors: FieldErrors = {};
-  if (!identifier.trim()) {
-    errors.identifier = "This field is required.";
-  }
-  if (!password) {
-    errors.password = "This field is required.";
-  }
-  return errors;
 }

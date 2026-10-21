@@ -4,8 +4,10 @@ export type Reservation = {
   id: string;
   customerName: string;
   phone: string;
+  /** Stable service key used for i18n lookup (`services.*`). */
   serviceType: string;
   date: string;
+  /** 24h time string, e.g. "14:30". */
   time: string;
   status: ReservationStatus;
   notes?: string;
@@ -17,9 +19,3 @@ export const RESERVATION_STATUSES: ReservationStatus[] = [
   "confirmed",
   "canceled",
 ];
-
-export const STATUS_LABELS: Record<ReservationStatus, string> = {
-  pending: "Pending",
-  confirmed: "Confirmed",
-  canceled: "Canceled",
-};

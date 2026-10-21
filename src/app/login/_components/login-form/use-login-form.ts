@@ -1,9 +1,12 @@
 "use client";
 
 import { useReducer } from "react";
-import { formReducer, initialState, validateClient } from "./utils";
+import { useTranslation } from "react-i18next";
+import { parseLogin, type ValidatedLogin } from "@/lib/login-schema";
+import { formReducer, initialState } from "./utils";
 
 export function useLoginForm() {
+  const { t } = useTranslation();
   const [state, dispatch] = useReducer(formReducer, initialState);
 
   const setIdentifier = (value: string) =>
@@ -14,12 +17,19 @@ export function useLoginForm() {
 
   const togglePassword = () => dispatch({ type: "TOGGLE_SHOW_PASSWORD" });
 
-  const validate = () => {
-    const errors = validateClient(state.identifier, state.password);
+  const validate = (): ValidatedLogin | null => {
+    const parsed = parseLogin(
+      { identifier: state.identifier, password: state.password },
+      t,
+    );
 
-    dispatch({ type: "SET_FIELD_ERRORS", errors });
+    if (!parsed.success) {
+      dispatch({ type: "SET_FIELD_ERRORS", errors: parsed.errors });
+      return null;
+    }
 
-    return Object.keys(errors).length === 0;
+    dispatch({ type: "SET_FIELD_ERRORS", errors: {} });
+    return parsed.data;
   };
 
   return {
