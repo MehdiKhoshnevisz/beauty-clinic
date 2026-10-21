@@ -22,6 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { formatNumber } from "@/i18n/format";
 import { NewReservationModal } from "../new-reservation-modal";
 import { ReservationDetailModal } from "../reservation-detail-modal";
 import { ReservationsView } from "../reservations-view";
@@ -48,6 +49,7 @@ function EmptyReservationsState() {
 export function ReservationsDashboard() {
   const {
     t,
+    locale,
     userName,
     searchQuery,
     setSearchQuery,
@@ -148,9 +150,9 @@ export function ReservationsDashboard() {
             </div>
             <p className="w-full text-sm text-charcoal/60 sm:ms-auto sm:w-auto sm:pb-2 sm:text-end">
               {t("reservations.showingRange", {
-                from: rangeFrom,
-                to: rangeTo,
-                filtered: filteredReservations.length,
+                from: formatNumber(rangeFrom, locale),
+                to: formatNumber(rangeTo, locale),
+                filtered: formatNumber(filteredReservations.length, locale),
               })}
             </p>
           </div>
@@ -168,8 +170,8 @@ export function ReservationsDashboard() {
                 <div className="flex flex-col gap-3 border-t border-charcoal/6 px-4 py-4 sm:flex-row sm:items-center sm:justify-between lg:px-5">
                   <p className="text-sm text-charcoal/60 tabular-nums">
                     {t("reservations.pageOf", {
-                      page: currentPage,
-                      pages: totalPages,
+                      page: formatNumber(currentPage, locale),
+                      pages: formatNumber(totalPages, locale),
                     })}
                   </p>
                   <Pagination className="mx-0 w-auto justify-start sm:justify-end">
@@ -205,7 +207,7 @@ export function ReservationsDashboard() {
                                 goToPage(item);
                               }}
                             >
-                              {item}
+                              {formatNumber(item, locale)}
                             </PaginationLink>
                           </PaginationItem>
                         ),

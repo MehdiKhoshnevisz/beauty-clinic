@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { useTranslation } from "react-i18next";
-import { formatTodayLabel } from "@/i18n/format";
+import { formatNumber, formatTodayLabel } from "@/i18n/format";
 import { defaultLocale, type Locale } from "@/i18n/settings";
 import { useDashboard } from "../../_providers/dashboard-context";
 
@@ -21,10 +21,17 @@ export function useDashboardOverview() {
     () => "",
   );
 
+  const formattedSummary = {
+    total: formatNumber(summary.total, locale),
+    upcoming: formatNumber(summary.upcoming, locale),
+    completed: formatNumber(summary.completed, locale),
+    cancelled: formatNumber(summary.cancelled, locale),
+  };
+
   return {
     t,
     userName,
-    summary,
+    summary: formattedSummary,
     recentReservations,
     todayLabel,
   };

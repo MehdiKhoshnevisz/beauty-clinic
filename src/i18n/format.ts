@@ -7,6 +7,14 @@ export function getTodayIso(date = new Date()) {
   return `${year}-${month}-${day}`;
 }
 
+export function formatNumber(
+  value: number,
+  locale: Locale = defaultLocale,
+  options?: Intl.NumberFormatOptions,
+) {
+  return new Intl.NumberFormat(localeDateTag[locale], options).format(value);
+}
+
 export function formatDisplayDate(
   isoDate: string,
   locale: Locale = defaultLocale,
@@ -39,7 +47,15 @@ export function formatTimeDisplay(
   if (Number.isNaN(hours) || !minutes) return time24;
 
   if (locale === "fa") {
-    return `${String(hours).padStart(2, "0")}:${minutes}`;
+    const hh = formatNumber(hours, locale, {
+      minimumIntegerDigits: 2,
+      useGrouping: false,
+    });
+    const mm = formatNumber(Number(minutes), locale, {
+      minimumIntegerDigits: 2,
+      useGrouping: false,
+    });
+    return `${hh}:${mm}`;
   }
 
   const period = hours >= 12 ? "PM" : "AM";
