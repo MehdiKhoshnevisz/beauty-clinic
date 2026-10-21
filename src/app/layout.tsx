@@ -1,32 +1,35 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Vazirmatn } from "next/font/google";
+import { Toaster } from "@/components/ui/toast";
+import { I18nProvider } from "@/i18n/provider";
+import { t } from "@/i18n";
+import { defaultLocale, localeDirection } from "@/i18n/settings";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const vazirmatn = Vazirmatn({
+  variable: "--font-vazirmatn",
+  subsets: ["arabic", "latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Beauty Clinic Reservation Management",
-  description: "Beauty clinic reservation management application",
+  title: t("meta.title"),
+  description: t("meta.description"),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full`}
+      lang={defaultLocale}
+      dir={localeDirection[defaultLocale]}
+      className={`${vazirmatn.variable} h-full`}
     >
       <body
-        className={`${geistSans.className} flex min-h-screen flex-col antialiased`}
+        className={`${vazirmatn.className} flex min-h-screen flex-col antialiased`}
       >
-        {children}
+        <I18nProvider>
+          {children}
+          <Toaster />
+        </I18nProvider>
       </body>
     </html>
   );
