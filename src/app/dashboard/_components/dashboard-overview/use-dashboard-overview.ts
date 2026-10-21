@@ -23,7 +23,6 @@ export function useDashboardOverview() {
 
   return {
     t,
-    locale,
     userName,
     summary,
     recentReservations,
