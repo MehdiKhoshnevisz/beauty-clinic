@@ -33,7 +33,7 @@ function SummaryCard({
       )}
     >
       <div
-        className="summary-glow pointer-events-none absolute -top-10 -end-8 size-28 rounded-full opacity-60 transition-transform duration-500 group-hover:scale-110"
+        className="summary-glow pointer-events-none absolute -top-10 -end-8 size-28 rounded-full opacity-70 blur-md transition-transform duration-500 group-hover:scale-110"
         aria-hidden
       />
       <div className="relative flex items-start justify-between gap-3">
